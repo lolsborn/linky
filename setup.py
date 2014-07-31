@@ -3,7 +3,7 @@
 from distutils.core import setup
 
 setup(name='Linky',
-      version='1.0',
+      version='0.0.1',
       description='Python Distribution Utilities',
       author='Steven Osborn',
       author_email='steven@truly.email',
