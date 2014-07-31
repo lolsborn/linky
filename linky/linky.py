@@ -1,18 +1,14 @@
 import re
 import types
-import cgi
-
-
-NON_CHARS = r''
 
 # Match most urls
-URL_REGEX1 = r'(http|www\.)[^\s<>\(\)\[\],]+[\.]+[^\s<>\(\)\[\],.]+' % { 'nc': NON_CHARS }
+URL_REGEX1 = r'(http|www\.)[^\s<>\(\)\[\],]+[\.]+[^\s<>\(\)\[\],.]+'
 
 # Match short urls without www or http for [com|org|net]
 # URL_REGEX2 = r'[^\s<>;&]+[\.]+(com|org|net)[^\s<>;&]+'
 
 # Match email addresses
-EMAIL_REGEX = r'[^\s<>\(\)\[\],<>]+@[^\s<>\(\)\[\],<>]+\.+[^\s<>\(\)\[\],.<>]+' % { 'nc': NON_CHARS }
+EMAIL_REGEX = r'[^\s<>\(\)\[\],<>]+@[^\s<>\(\)\[\],<>]+\.+[^\s<>\(\)\[\],.<>]+'
 
 # Match US Phone Numbers
 PHONE_REGEX = r'([1][\.\- ])?[0-9]{3}[\.\- ][0-9]{3}[\.\- ][0-9]{4}'
@@ -63,15 +59,9 @@ def phone_handler(match):
     onlynum = ''.join(c for c in text if c.isdigit())
     return '<a href="tel:%(num)s" target="_blank">%(num)s</a>' % { 'num': onlynum }
 
-def linky_plain(text, **kwargs):
-    text = cgi.escape(text)
-    print kwargs
-    return linky(text, **kwargs)
-
 def linky(text, url_regex=URL_REGEX1, email_regex=EMAIL_REGEX, \
     phone_regex=PHONE_REGEX, url_callback=url_handler, email_callback=email_handler, \
     phone_callback=phone_handler):
-    print email_callback
     newtext = text
 
     if email_callback:
