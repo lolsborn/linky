@@ -16,6 +16,8 @@ PHONE_REGEX = r'([1][\.\- ])?[0-9]{3}[\.\- ][0-9]{3}[\.\- ][0-9]{4}'
 
 def email_handler(match):
     text = match.group(0)
+    start = ""
+    tail = ""
     if text.startswith("<"):
         text = text[1:]
         start = "<"

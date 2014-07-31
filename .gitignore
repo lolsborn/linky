@@ -4,3 +4,4 @@ lib/
 .Python
 .DS_Store
 *.pyc
+Linky.egg-info/
